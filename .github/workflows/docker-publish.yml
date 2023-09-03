@@ -6,20 +6,21 @@ name: Docker
 # documentation.
 
 on:
-  schedule:
-    - cron: '18 1 * * *'
+#  schedule:
+#    - cron: '18 1 * * *'
   push:
-    branches: [ "main" ]
+    branches: [ "main", "local" ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "local" ]
 
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: owine/nzbget-ng
+  BRANCH: ${{ github.ref }} 
 
 
 jobs:
