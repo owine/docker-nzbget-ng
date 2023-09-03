@@ -1,3 +1,5 @@
+FROM ghcr.io/linuxserver/unrar:latest as unrar
+
 # Buildstage
 FROM ghcr.io/linuxserver/baseimage-alpine:3.18 as buildstage
 
@@ -58,12 +60,11 @@ RUN \
 # Runtime Stage
 FROM ghcr.io/linuxserver/baseimage-alpine:3.18
 
-ARG UNRAR_VERSION=6.1.7
 # set version label
 ARG BUILD_DATE
 ARG VERSION
-LABEL build_version="ZenDrive (internal) version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="digitalmonks"
+LABEL build_version="owine (internal) version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="owine"
 
 RUN \
   echo "**** install build packages ****" && \
@@ -88,17 +89,6 @@ RUN \
     p7zip \
     py3-pip \
     python3 && \
-  echo "**** install unrar from source ****" && \
-  mkdir /tmp/unrar && \
-  curl -o \
-    /tmp/unrar.tar.gz -L \
-    "https://www.rarlab.com/rar/unrarsrc-${UNRAR_VERSION}.tar.gz" && \  
-  tar xf \
-    /tmp/unrar.tar.gz -C \
-    /tmp/unrar --strip-components=1 && \
-  cd /tmp/unrar && \
-  make && \
-  install -v -m755 unrar /usr/bin && \
   echo "**** install python packages ****" && \
   pip3 install --no-cache-dir -U \
     pip \
@@ -121,6 +111,8 @@ RUN \
 
 # add local files and files from buildstage
 COPY --from=buildstage /app/nzbget /app/nzbget
+# add unrar
+COPY --from=unrar /usr/bin/unrar-alpine /usr/bin/unrar
 COPY docker/root/ /
 
 # ports and volumes
