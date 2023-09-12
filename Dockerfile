@@ -1,7 +1,7 @@
 FROM ghcr.io/linuxserver/unrar:6.2.10-ls1 as unrar
 
 # Buildstage
-FROM ghcr.io/linuxserver/baseimage-alpine:3.18-c84a529a-ls18 as buildstage
+FROM ghcr.io/linuxserver/baseimage-alpine:3.18-a67812a8-ls17 as buildstage
 
 RUN \
   echo "**** install build packages ****" && \
@@ -58,7 +58,7 @@ RUN \
     "https://curl.haxx.se/ca/cacert.pem"
 
 # Runtime Stage
-FROM ghcr.io/linuxserver/baseimage-alpine:3.18-c84a529a-ls18
+FROM ghcr.io/linuxserver/baseimage-alpine:3.18-a67812a8-ls17
 
 # set version label
 ARG BUILD_DATE
