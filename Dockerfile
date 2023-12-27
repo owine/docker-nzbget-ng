@@ -90,10 +90,10 @@ RUN \
     py3-pip \
     python3 && \
   echo "**** install python packages ****" && \
-  pip3 install --no-cache-dir -U \
+  pip install --no-cache-dir -U \
     pip \
     wheel && \
-  pip install --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.17/ \
+  pip install --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.19/ \
     apprise \
     chardet \
     lxml \
