@@ -97,7 +97,7 @@ RUN \
   pip install --no-cache-dir -U \
     pip \
     wheel && \
-  pip install --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.19/ \
+  pip install --break-system-packages --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.18/ \
     apprise \
     chardet \
     lxml \
