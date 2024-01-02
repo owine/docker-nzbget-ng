@@ -90,7 +90,7 @@ RUN \
     py3-pip \
     python3 && \
   echo "**** install python packages ****" && \
-  pip install --no-cache-dir -U \
+  pip install --break-system-packages --no-cache-dir -U \
     pip \
     wheel && \
   pip install --break-system-packages --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.18/ \
