@@ -89,10 +89,6 @@ RUN \
     p7zip \
     py3-pip \
     python3 && \
-  echo " **** install python venv ****" && \
-  mkdir -p /python/venv && \
-  python3 -m venv /python/venv && \
-  /python/venv/bin/activate && \
   echo "**** install python packages ****" && \
   pip install --no-cache-dir -U \
     pip \
